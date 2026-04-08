@@ -20,9 +20,11 @@ El sitio web está diseñado con un enfoque "mobile-first", implementando técni
 
 ## 📸 Capturas de Pantalla
 
-| Vista de Escritorio | Vista Móvil |
+| Vista de Escritorio | Vista Dispositivo Móvil |
 | :---: | :---: |
-| <!-- PON AQUÍ UNA CAPTURA EN ESCRITORIO --> | <!-- PON AQUÍ UNA CAPTURA EN MÓVIL --> |
+| <img width="1901" height="911" alt="image" src="https://github.com/user-attachments/assets/32dc53e6-d908-4fe5-8663-125bf6267423" />
+|<img width="370" height="823" alt="image" src="https://github.com/user-attachments/assets/8b159ad4-be94-472d-922f-3d36b55f405a" />
+|
 
 ## ✨ Características Principales
 
