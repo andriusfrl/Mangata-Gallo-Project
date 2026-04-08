@@ -1,6 +1,7 @@
 # Mangata & Gallo - Landing Page
 
-![Project Banner](<!-- PON AQUÍ EL ENLACE A UNA IMAGEN O CAPTURA DE PANTALLA DE LA PÁGINA -->)
+<img width="2826" height="250" alt="Asset 4@3x" src="https://github.com/user-attachments/assets/b17f0e72-c6a8-4881-ab78-f408fe13c082" />
+
 
 ## 📖 Descripción del Proyecto
 
