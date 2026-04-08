@@ -11,7 +11,7 @@ El sitio web está diseñado con un enfoque "mobile-first", implementando técni
 ## 🚀 Tecnologías Utilizadas
 
 - **HTML**: Estructura semántica del contenido.
-- **CSS **: 
+- **CSS**: 
   - Estilos personalizados y diseño responsivo.
   - **CSS Grid**: Usado para organizar de forma bidimensional (navbar y footer).
   - **CSS Flexbox**: Usado para alinear correctamente los elementos en una dimensión.
