@@ -1,4 +1,4 @@
-# Mangata & Gallo - Landing Page
+<h1 href="https://mangata-gallo-project.vercel.app/" target="_blank"> Mangata & Gallo - Landing Page</h1>
 
 <img width="2826" height="250" alt="Asset 4@3x" src="https://github.com/user-attachments/assets/b17f0e72-c6a8-4881-ab78-f408fe13c082" />
 
