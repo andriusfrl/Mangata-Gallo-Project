@@ -30,7 +30,6 @@ El sitio web está diseñado con un enfoque "mobile-first", implementando técni
 
 ## ✨ Características Principales
 
-1. **Diseño Responsivo (RWD)**: La página se adapta fluidamente a cualquier tamaño de pantalla, desde dispositivos móviles hasta monitores ultra anchos.
+1. **Diseño Responsivo **: La página se adapta fluidamente a cualquier tamaño de pantalla, desde dispositivos móviles hasta monitores ultra anchos.
 2. **Animaciones Fluidas**: Efectos de "hover" e interacciones pulidas sin depender de librerías externas de JavaScript.
 3. **SEO Optimizado**: Estructura de etiquetas de encabezado (`<h1>`, `<h2>`, etc.) y accesibilidad implementada desde la base.
-4. **Acabado Premium**: Colores oscuros, contrastes finos y espaciados adecuados para reflejar una marca de lujo.
