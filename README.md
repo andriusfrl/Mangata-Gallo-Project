@@ -22,11 +22,15 @@ El sitio web está diseñado con un enfoque "mobile-first", implementando técni
 
 ### Vista de Escritorio
 
-<img width="1901" height="911" alt="image" src="https://github.com/user-attachments/assets/32dc53e6-d908-4fe5-8663-125bf6267423" /> 
+<p align="center">
+  <img width="1901" height="911" src="https://github.com/user-attachments/assets/32dc53e6-d908-4fe5-8663-125bf6267423" />
+</p>
 
-### Vista desde dispovitio Movil
+### Vista desde dispositivo móvil
 
-<img width="370" height="823" alt="image" src="https://github.com/user-attachments/assets/8b159ad4-be94-472d-922f-3d36b55f405a" />|
+<p align="center">
+  <img width="370" height="823" src="https://github.com/user-attachments/assets/8b159ad4-be94-472d-922f-3d36b55f405a" />
+</p>
 
 ## ✨ Características Principales
 
