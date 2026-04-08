@@ -135,7 +135,9 @@ ul { list-style: none; }
 /* Renderizador de logotipo principal */
 .logo-container { display: flex; justify-content: center; }
 .logo-container .logo-full {
-    height: 35px;
+    height: auto;
+    max-height: 35px;
+    max-width: 100%;
     object-fit: contain;
     transition: transform var(--transition-smooth), opacity var(--transition-smooth);
 }
