@@ -1,0 +1,465 @@
+/* Las pseudo-clases en root permiten definir paletas maestras. Si el tema de diseño cambia en el futuro, sólo se modifica valor hexadecimal en este nodo central para que escale a todas las ramas. */
+:root {
+    --color-bg: #FCFBF8;
+    --color-text: #2B2B2B;
+    --color-text-light: #5f5f5f;
+    --color-primary: #1A1A1A; 
+    --color-accent: #C5A059; 
+    --color-accent-dark: #9e7f41; 
+    
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-body: 'Montserrat', sans-serif;
+    
+    /* Variable para normalizar los tiempos en los efectos "Hover" minimizando riesgos visuales */
+    --transition-smooth: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Reset tradicional en todos los bloques visuales para sobreescribir márgenes originarios del motor del navegador e igualar las cajas base. */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Se habilita el smooth scroll global para que las anclas directas (<a href="#id">) naveguen hacia abajo de manera progresiva. */
+html {
+    scroll-behavior: smooth; 
+    background-color: var(--color-primary); 
+}
+
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+    overflow-x: hidden; 
+    
+    /* Gatillo pre-configurado para que toda la caja body gane opacidad de 0 a 1 después del tiempo de carga. */
+    opacity: 0;
+    animation: fadeInPage 1.2s ease-in forwards;
+}
+
+/* Frame de animación de opacidad global */
+@keyframes fadeInPage {
+    to { opacity: 1; }
+}
+
+/* Frame de animación dedicado que traslada las capas textuales desde una posición baja de 'Y' hacia cero para efecto parallax inverso */
+@keyframes slideUpFade {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Ajustes globales de tipografía enfocados en legibilidad para Headers H1-H4 */
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    font-weight: 400; 
+    color: var(--color-primary);
+}
+
+/* Estilos neutrales para hipervínculos evitando colores nativos azules de HTML tradicional */
+a {
+    text-decoration: none; 
+    color: inherit;
+    transition: color var(--transition-smooth);
+}
+
+ul { list-style: none; }
+
+/* La clase abstracta "Screen-Reader Only" es obligatoria por normas de Accesibilidad WCAG (Web Content Accessibility Guidelines). Oculta el componente manteniendo intacto su nodo en el DOM */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+
+.main-header {
+    background-color: rgba(252, 251, 248, 0.96); 
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    position: sticky; /* Fija dinámicamente este contenedor a la cumbre de la pantalla durante scroll activo vertical */
+    top: 0;
+    z-index: 100; /* Previene fallos de superposición asignando prioridad sobre las demás capas */
+    backdrop-filter: blur(10px); /* Estética de cristal implementada con renderizado browser-side */
+}
+
+/* Arquitectura Grid de la Cabecera. Empleamos `grid-template-columns: 1fr auto 1fr` lo cual inmoviliza la columna central en el centro matemático perfecto del viewport */
+.main-nav {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr; 
+    align-items: center; 
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 1.2rem 3rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 3rem; /* Espaciado fijo en reemplazo del margen */
+}
+
+/* Seleccionamos el último grupo `ul` de la barra inyectándolo hacia una variable alineada a derecha simulando la asimetría */
+.nav-links:last-of-type {
+    justify-content: flex-end; 
+}
+
+/* Estilización específica de interacciones del header */
+.nav-links a {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em; 
+    position: relative; 
+    padding: 0.15rem 0;
+    font-weight: 400;
+}
+
+/* Generador de pseudoelementos inyectados para dibujar barras doradas de hover en lugar de usar borders o underlines obsoletos */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--color-accent);
+    transition: width var(--transition-smooth);
+}
+.nav-links a:hover::after { width: 100%; }
+
+/* Renderizador de logotipo principal */
+.logo-container { display: flex; justify-content: center; }
+.logo-container .logo-full {
+    height: 35px;
+    object-fit: contain;
+    transition: transform var(--transition-smooth), opacity var(--transition-smooth);
+}
+.logo-container:hover .logo-full {
+    transform: scale(1.03); 
+    opacity: 0.8;
+}
+
+
+main {
+    display: flex;
+    flex-direction: column; 
+    /* El macro-contenedor ordena las secciones de nivel profundo apilándolas */
+}
+
+/* --- Hero Banner Initial --- 
+Bloque que recibe un fondo generalizado con un gradiente incrustado directamente por sobre el Background Url Image para contraste textual */
+.hero-section {
+    position: relative;
+    width: 100%;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+    background: linear-gradient(rgba(26,26,26,0.5), rgba(26,26,26,0.4)), url('https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    color: #fff;
+    filter: grayscale(100%);
+    padding: 2rem;
+}
+
+/* Restringe el ancho a caracteres leíbles en escritorio resolviendo posibles fatigas de lectura */
+.hero-content {
+    max-width: 800px;
+    animation: slideUpFade 1.2s 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    opacity: 0;
+}
+
+.hero-content h1 {
+    font-size: 4.5rem; 
+    color: #fff;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    max-width: 600px;
+    margin-inline: auto;
+}
+
+/* Modela los botones primarios como 'ghost buttons' basándose en colores tenues, bordes absolutos y transparencias. */
+.btn-primary {
+    display: inline-block;
+    padding: 1.2rem 3rem;
+    background-color: rgba(255,255,255,0.05); 
+    backdrop-filter: blur(5px); 
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.8rem;
+    position: relative;
+    overflow: hidden;
+    transition: all var(--transition-smooth);
+}
+.btn-primary:hover {
+    background-color: #fff;
+    color: var(--color-primary);
+    border-color: #fff;
+}
+
+
+/* --- Bloque de Tarjetas Flexibles (Colecciones) --- */
+.featured-collections {
+    display: flex;
+    justify-content: space-between; 
+    align-items: stretch;
+    gap: 2.5rem;
+    max-width: 1440px;
+    margin: 8rem auto;
+    padding: 0 3rem;
+}
+
+.collection-card {
+    /* La orden Flex: 1 en el bloque es fundamental, asume un divisor de tres tercios (33%) en su parent y ocupa igual volumen visual independiendo su data interna */
+    flex: 1; 
+    min-width: 0; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Wrapper de render fotográfico. Se especifica 'aspect-ratio: 4/5' para no depender de imágenes de stock obligadamente parejas, forzando cortes proporcionales automáticamente desde CSS */
+.card-image-wrapper {
+    width: 100%;
+    aspect-ratio: 4/5; 
+    overflow: hidden; 
+    margin-bottom: 2.5rem;
+    background-color: #eee;
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+}
+
+/* Al apuntar la tarjeta, se ejecuta este trigger mutando en un porcentaje al componente de la imagen */
+.collection-card:hover .card-img {
+    transform: scale(1.06); 
+}
+
+.collection-card h3 {
+    font-size: 2.2rem;
+    margin-bottom: 0.8rem;
+    transition: color var(--transition-smooth);
+}
+.collection-card:hover h3 { color: var(--color-accent-dark); }
+
+.collection-card p {
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    font-weight: 300;
+    line-height: 1.8;
+}
+
+/* Enlaces nativos y funcionales debajo de las cards */
+.link-secondary {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    border-bottom: 1px solid rgba(43,43,43,0.3);
+    padding-bottom: 4px;
+    font-weight: 500;
+    transition: border-color var(--transition-smooth);
+}
+.collection-card:hover .link-secondary, .link-secondary:hover {
+    border-color: var(--color-accent-dark);
+    color: var(--color-accent-dark);
+}
+
+/* --- Modulo Atelier --- 
+Módulo diseñado puramente usando un sistema CSS clásico de mitades iguales basado en grid 1fr 1fr */
+.atelier-section {
+    background-color: #fff; 
+    padding: 6rem 3rem;
+}
+
+.atelier-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 5rem;
+    align-items: center;
+}
+
+.atelier-text h2 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.atelier-text .subtitle {
+    color: var(--color-accent-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.8rem;
+    margin-bottom: 2rem;
+}
+
+.atelier-text p {
+    color: var(--color-text-light);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+    font-size: 1.05rem;
+}
+
+.atelier-text .link-secondary {
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+/* Modela el cuadro general de renders inyectados. En este caso impone las proporciones clásicas verticales */
+.atelier-image img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+}
+
+
+.main-footer {
+    background-color: var(--color-primary); 
+    color: #fff;
+    padding: 5rem 3rem 2rem;
+    
+    /* Configuración de sub-nodos y grid templates combinados con grid-template-areas para crear mapeos lógicos en lugar de depender de divs subyacentes complicados */
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr; 
+    grid-template-areas: 
+        "brand links social"
+        "bottom bottom bottom";
+    gap: 4rem;
+}
+
+.footer-brand { grid-area: brand; }
+
+/* El filtro (filter) permite mutar los bytes de imágenes SVG e isotipos nativos volviendo opuestos sus colores oscuros (escala de negros puros pasa a blancos puros en front end dinámico). */
+.logo-compact {
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 2rem;
+    filter: brightness(0) invert(1); 
+    opacity: 0.9;
+}
+
+.footer-brand p {
+    font-weight: 300;
+    opacity: 0.6;
+    letter-spacing: 0.05em;
+    line-height: 1.8;
+}
+
+/* Designación de las sub-columnas del widget social según nombres asignados en grid map */
+.footer-links { grid-area: links; }
+.footer-social { grid-area: social; }
+
+.main-footer h4 {
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    font-family: var(--font-body);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.main-footer ul li { margin-bottom: 1rem; }
+
+.main-footer ul li a {
+    font-size: 0.85rem;
+    font-weight: 300;
+    opacity: 0.6;
+    letter-spacing: 0.05em;
+}
+
+.main-footer ul li a:hover {
+    opacity: 1;
+    color: var(--color-accent);
+}
+
+.footer-bottom {
+    grid-area: bottom; 
+    text-align: center;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(255,255,255,0.1); 
+    font-size: 0.75rem;
+    opacity: 0.4;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+
+/* Las reglas 'Media' reajustan variables absolutas en beneficio de tamaños menores, por ejemplo reordenando gaps, anchos, y volúmenes */
+@media (max-width: 1024px) {
+    /* El header original es reseteado a una grilla vertical para evitar desbordamientos laterales */
+    .main-nav {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        gap: 1.5rem;
+        text-align: center;
+        padding: 1.5rem;
+    }
+    /* Forzado visual priorizando logotipo por encima de los listados en columnas */
+    .logo-container { order: -1; }
+    
+    /* Vuelve a centrar todos los enlaces (sobrescribe la orden de alineación a la derecha del segundo grupo) */
+    .nav-links, .nav-links:last-of-type { 
+        justify-content: center; 
+        gap: 2rem; 
+    }
+    
+    .hero-content h1 { font-size: 3.5rem; }
+    .featured-collections { padding: 0 2rem; gap: 1.5rem; }
+    .atelier-container { gap: 3rem; padding: 0 2rem; }
+}
+
+/* Reglas de colapso extremo para vista vertical (Smartphones de todos los tamaños estándar) */
+@media (max-width: 768px) {
+    
+    /* Las Cards verticales ya no se apilan de izquierda a derecha. Se aplican en flex-direction column que impone estructura tradicional de listado */
+    .featured-collections {
+        flex-direction: column; 
+        margin: 4rem auto;
+    }
+
+    .atelier-container {
+        grid-template-columns: 1fr; 
+        text-align: center;
+    }
+    
+    /* Footer de múltiples columnas se unifica redefiniendo su bloque a un único array perimetral */
+    .main-footer {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "brand"
+            "links"
+            "social"
+            "bottom";
+        text-align: center;
+        padding: 4rem 2rem 2rem;
+        gap: 2.5rem;
+    }
+    
+    .logo-compact { margin: 0 auto 1.5rem; }
+}

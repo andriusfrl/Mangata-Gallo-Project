@@ -1,0 +1,7 @@
+{
+  "workbench.sideBar.location": "left",
+  "workbench.activityBar.location": "default",
+  "workbench.activityBar.iconClickBehavior": "toggle",
+  "zenMode.hideActivityBar": false,
+  "workbench.activityBar.orientation": "vertical"
+}
