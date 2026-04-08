@@ -7,8 +7,7 @@
 
 Este proyecto es una landing page responsiva y de diseño de lujo para la marca de joyería de lujo **Mangata & Gallo**. Fue desarrollado como parte de un proyecto para el **Curso de Meta Full-Stack Engineer en Coursera**. 
 
-El sitio web está diseñado con un enfoque "mobile-first", implementando técnicas modernas de maquetación web, incluyendo **CSS Grid** para la estructura principal (navegación y pie de página) y **CSS Flexbox** para la alineación del contenido principal. Se puso especial atención en la estética, utilizando tipografías modernas, paletas de colores sofisticadas y micro-animaciones para brindar una experiencia de usuario (UX) inmersiva y de alta calidad.
-
+El sitio web está diseñado con un enfoque "mobile-first", implementando técnicas modernas de maquetación web, incluyendo **CSS Grid** para la estructura principal (navegación y pie de página) y **CSS Flexbox** para la alineación del contenido principal. Se puso especial atención en la estética, utilizando tipografías modernas, paletas de colores sofisticadas y micro-animaciones para brindar una experiencia de usuario (UX) inmersiva
 ## 🚀 Tecnologías Utilizadas
 
 - **HTML**: Estructura semántica del contenido.
